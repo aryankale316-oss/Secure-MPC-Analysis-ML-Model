@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Secure MPC Medical Dashboard</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+<h1>Secure MPC Heart Disease Prediction</h1>
+
+<p class="subtitle">
+Privacy-Preserving Prediction using Secure Multi-Party Computation
+</p>
+
+<form id="predictionForm">
+
+<div class="grid">
+
+<input type="number" id="age" placeholder="Age" required>
+
+<select id="sex">
+<option value="1">Male</option>
+<option value="0">Female</option>
+</select>
+
+<select id="cp">
+<option value="0">Typical Angina</option>
+<option value="1">Atypical Angina</option>
+<option value="2">Non-Anginal Pain</option>
+<option value="3">Asymptomatic</option>
+</select>
+
+<input type="number" id="trestbps" placeholder="Resting BP">
+
+<input type="number" id="chol" placeholder="Cholesterol">
+
+<select id="fbs">
+<option value="0">FBS < 120</option>
+<option value="1">FBS > 120</option>
+</select>
+
+<select id="restecg">
+<option value="0">Normal</option>
+<option value="1">ST Abnormality</option>
+<option value="2">Hypertrophy</option>
+</select>
+
+<input type="number" id="thalach" placeholder="Max Heart Rate">
+
+<select id="exang">
+<option value="0">No Exercise Angina</option>
+<option value="1">Exercise Angina</option>
+</select>
+
+<input type="number" id="oldpeak" step="0.1" placeholder="Oldpeak">
+
+<select id="slope">
+<option value="0">Upsloping</option>
+<option value="1">Flat</option>
+<option value="2">Downsloping</option>
+</select>
+
+<select id="ca">
+<option value="0">0 vessels</option>
+<option value="1">1 vessel</option>
+<option value="2">2 vessels</option>
+<option value="3">3 vessels</option>
+</select>
+
+<select id="thal">
+<option value="1">Normal</option>
+<option value="2">Fixed Defect</option>
+<option value="3">Reversible Defect</option>
+</select>
+
+</div>
+
+<button type="submit" class="predict-btn">
+Predict Risk
+</button>
+
+<button type="button" onclick="fillSample()" class="sample-btn">
+Fill Sample Data
+</button>
+
+</form>
+
+<div id="resultCard" class="result-card hidden">
+
+<h2 id="predictionText"></h2>
+
+<p id="confidenceText"></p>
+
+</div>
+
+<div class="info-box">
+
+<h3>Secure MPC Protection</h3>
+
+<p>
+This system uses Secure Multi-Party Computation. Patient data is never shared
+between hospitals. Only encrypted model parameters are used.
+</p>
+
+</div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

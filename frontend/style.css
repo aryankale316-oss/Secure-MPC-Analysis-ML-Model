@@ -1,0 +1,81 @@
+body {
+
+    font-family: Arial;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: white;
+    margin: 0;
+    
+    }
+    
+    .dashboard {
+    
+    width: 500px;
+    margin: auto;
+    margin-top: 40px;
+    background: white;
+    color: black;
+    padding: 30px;
+    border-radius: 12px;
+    
+    }
+    
+    .grid {
+    
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    
+    }
+    
+    input, select {
+    
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    
+    }
+    
+    .predict-btn {
+    
+    background: #007bff;
+    color: white;
+    padding: 12px;
+    border: none;
+    margin-top: 10px;
+    cursor: pointer;
+    
+    }
+    
+    .sample-btn {
+    
+    background: #28a745;
+    color: white;
+    padding: 12px;
+    border: none;
+    margin-top: 10px;
+    cursor: pointer;
+    
+    }
+    
+    .result-card {
+    
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    
+    }
+    
+    .hidden {
+    
+    display: none;
+    
+    }
+    
+    .info-box {
+    
+    margin-top: 20px;
+    background: #f4f4f4;
+    padding: 10px;
+    
+    }
+    
