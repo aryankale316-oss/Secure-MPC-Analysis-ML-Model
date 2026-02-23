@@ -1,118 +1,165 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-
-<title>Secure MPC Medical Dashboard</title>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HeartSync | Secure Clinical Portal</title>
 <link rel="stylesheet" href="style.css">
-
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
-
 <body>
+<div class="app-shell">
+    <aside class="sidebar">
+        <div class="brand">
+            <h2>HeartSync</h2>
+        </div>
+        <nav class="nav-menu">
+            <div class="nav-item active">Dashboard</div>
+            <div class="nav-item">Privacy Protocol</div>
+            <div class="nav-item">Logs</div>
+        </nav>
+        <div class="status-footer">
+            <p>MPC Node: Active</p>
+            <small>Secure Encryption Enabled</small>
+        </div>
+    </aside>
 
-<div class="dashboard">
+    <main class="main-content">
+        <header class="content-header">
+            <h1>Patient Risk Analysis</h1>
+            <p>Secure Multi-Party Computation Terminal <span class="node-id">Node_#01</span></p>
+        </header>
 
-<h1>Secure MPC Heart Disease Prediction</h1>
+        <div class="dashboard-grid">
+            <section class="glass-card">
+                <form id="predictionForm">
+                    <div class="input-grid">
 
-<p class="subtitle">
-Privacy-Preserving Prediction using Secure Multi-Party Computation
-</p>
+                        <div class="input-field">
+                            <label>Age</label>
+                            <input type="number" id="age" min="1" max="120" value="30">
+                        </div>
 
-<form id="predictionForm">
+                        <div class="input-field">
+                            <label>Gender</label>
+                            <select id="sex">
+                                <option value="0">Female</option>
+                                <option value="1">Male</option>
+                            </select>
+                        </div>
 
-<div class="grid">
+                        <div class="input-field">
+                            <label>Chest Pain Type</label>
+                            <select id="cp">
+                                <option value="0">Typical Angina</option>
+                                <option value="1">Atypical Angina</option>
+                                <option value="2">Non-Anginal Pain</option>
+                                <option value="3">Asymptomatic</option>
+                            </select>
+                        </div>
 
-<input type="number" id="age" placeholder="Age" required>
+                        <div class="input-field">
+                            <label>Resting BP</label>
+                            <input type="number" id="trestbps" min="80" max="200" value="110">
+                        </div>
 
-<select id="sex">
-<option value="1">Male</option>
-<option value="0">Female</option>
-</select>
+                        <div class="input-field">
+                            <label>Cholesterol</label>
+                            <input type="number" id="chol" min="100" max="400" value="175">
+                        </div>
 
-<select id="cp">
-<option value="0">Typical Angina</option>
-<option value="1">Atypical Angina</option>
-<option value="2">Non-Anginal Pain</option>
-<option value="3">Asymptomatic</option>
-</select>
+                        <div class="input-field">
+                            <label>Fasting Blood Sugar</label>
+                            <select id="fbs">
+                                <option value="0">≤ 120 mg/dl</option>
+                                <option value="1">&gt; 120 mg/dl</option>
+                            </select>
+                        </div>
 
-<input type="number" id="trestbps" placeholder="Resting BP">
+                        <div class="input-field">
+                            <label>Rest ECG</label>
+                            <select id="restecg">
+                                <option value="0">Normal</option>
+                                <option value="1">ST-T abnormality</option>
+                                <option value="2">Left ventricular hypertrophy</option>
+                            </select>
+                        </div>
 
-<input type="number" id="chol" placeholder="Cholesterol">
+                        <div class="input-field">
+                            <label>Max Heart Rate</label>
+                            <input type="number" id="thalach" min="60" max="220" value="180">
+                        </div>
 
-<select id="fbs">
-<option value="0">FBS < 120</option>
-<option value="1">FBS > 120</option>
-</select>
+                        <div class="input-field">
+                            <label>Exercise Induced Angina</label>
+                            <select id="exang">
+                                <option value="0">No</option>
+                                <option value="1">Yes</option>
+                            </select>
+                        </div>
 
-<select id="restecg">
-<option value="0">Normal</option>
-<option value="1">ST Abnormality</option>
-<option value="2">Hypertrophy</option>
-</select>
+                        <div class="input-field">
+                            <label>Oldpeak</label>
+                            <input type="number" id="oldpeak" min="0" max="6" step="0.1" value="0">
+                        </div>
 
-<input type="number" id="thalach" placeholder="Max Heart Rate">
+                        <div class="input-field">
+                            <label>Slope</label>
+                            <select id="slope">
+                                <option value="1">Upsloping</option>
+                                <option value="2">Flat</option>
+                                <option value="3">Downsloping</option>
+                            </select>
+                        </div>
 
-<select id="exang">
-<option value="0">No Exercise Angina</option>
-<option value="1">Exercise Angina</option>
-</select>
+                        <div class="input-field">
+                            <label>Number of Vessels</label>
+                            <select id="ca">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+                        </div>
 
-<input type="number" id="oldpeak" step="0.1" placeholder="Oldpeak">
+                        <div class="input-field">
+                            <label>Thal</label>
+                            <select id="thal">
+                                <option value="1">Normal</option>
+                                <option value="2">Fixed Defect</option>
+                                <option value="3">Reversible Defect</option>
+                            </select>
+                        </div>
+                    </div>
 
-<select id="slope">
-<option value="0">Upsloping</option>
-<option value="1">Flat</option>
-<option value="2">Downsloping</option>
-</select>
+                    <div class="form-footer">
+                        <button type="submit" class="btn-main">Compute Secure Risk</button>
+                        <button type="button" onclick="fillHealthyData()" class="btn-sub">Fill Healthy Data</button>
+                        <button type="button" onclick="resetForm()" class="btn-sub">Reset</button>
+                    </div>
+                </form>
+            </section>
 
-<select id="ca">
-<option value="0">0 vessels</option>
-<option value="1">1 vessel</option>
-<option value="2">2 vessels</option>
-<option value="3">3 vessels</option>
-</select>
+            <section class="glass-card result-container">
+                <div id="idleView" class="view"><h4>Ready for Analysis</h4></div>
 
-<select id="thal">
-<option value="1">Normal</option>
-<option value="2">Fixed Defect</option>
-<option value="3">Reversible Defect</option>
-</select>
+                <div id="loadingView" class="view hidden">
+                    <div class="spinner"></div>
+                    <p>Encrypting & Processing...</p>
+                </div>
 
-</div>
-
-<button type="submit" class="predict-btn">
-Predict Risk
-</button>
-
-<button type="button" onclick="fillSample()" class="sample-btn">
-Fill Sample Data
-</button>
-
-</form>
-
-<div id="resultCard" class="result-card hidden">
-
-<h2 id="predictionText"></h2>
-
-<p id="confidenceText"></p>
-
-</div>
-
-<div class="info-box">
-
-<h3>Secure MPC Protection</h3>
-
-<p>
-This system uses Secure Multi-Party Computation. Patient data is never shared
-between hospitals. Only encrypted model parameters are used.
-</p>
-
-</div>
-
+                <div id="resultView" class="view hidden">
+                    <h2 id="predictionText">--</h2>
+                    <small>Risk Probability</small>
+                    <div class="meter"><div id="meterFill"></div></div>
+                    <p>Confidence: <span id="confValue">0</span>%</p>
+                    <p id="riskAdvice"></p>
+                </div>
+            </section>
+        </div>
+    </main>
 </div>
 
 <script src="script.js"></script>
-
 </body>
 </html>
