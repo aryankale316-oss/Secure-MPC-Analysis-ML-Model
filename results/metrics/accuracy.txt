@@ -1,1 +1,1 @@
-Global Model Accuracy: 0.8830409356725146
+0.838049

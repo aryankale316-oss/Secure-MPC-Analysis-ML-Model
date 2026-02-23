@@ -1,19 +1,22 @@
 from flask import Flask, request, jsonify, send_from_directory
+from flask_cors import CORS
 import joblib
 import numpy as np
 import pandas as pd
 import os
 
 # paths
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-FRONTEND_DIR = os.path.join(BASE_DIR, "frontend")
-MODEL_PATH = os.path.join(BASE_DIR, "results", "models", "global_model.pkl")
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+FRONTEND_DIR = os.path.join(BASE_DIR, "..", "frontend")
+MODEL_PATH = os.path.join(BASE_DIR, "..", "results", "models", "global_model.pkl")
 
 # load model
 model = joblib.load(MODEL_PATH)
+print("Model loaded successfully")
 
 # flask setup
-app = Flask(__name__, static_folder=FRONTEND_DIR, static_url_path="")
+app = Flask(__name__)
+CORS(app)
 
 @app.route("/")
 def serve_frontend():
@@ -27,66 +30,29 @@ def serve_static(path):
 def predict():
     try:
         data = request.get_json()
+        features = data.get("features", []) if isinstance(data, dict) else []
 
-        print("Received:", data)
-
-        features = data.get("features", [])
-
-        # FIX message and validation
         if len(features) != 13:
             return jsonify({
-                "prediction": "Invalid input. 13 features required."
-            })
+                "error": "Invalid input. 13 features required."
+            }), 400
 
-        # convert to float
-        features = [float(x) for x in features]
+        feature_array = np.array(features, dtype=float).reshape(1, -1)
 
-        columns = [
-            "age",
-            "sex",
-            "cp",
-            "trestbps",
-            "chol",
-            "fbs",
-            "restecg",
-            "thalach",
-            "exang",
-            "oldpeak",
-            "slope",
-            "ca",
-            "thal"
-        ]
+        prediction = int(model.predict(feature_array)[0])
+        probabilities = model.predict_proba(feature_array)[0]
 
-        df = pd.DataFrame([features], columns=columns)
-
-        print("DataFrame:")
-        print(df)
-
-        # GET PREDICTION
-        prediction = model.predict(df)[0]
-
-        # GET PROBABILITY
-        probabilities = model.predict_proba(df)[0]
-
-        print("Probabilities:", probabilities)
-
-        confidence = round(max(probabilities) * 100, 2)
-
-        result = "Disease Detected" if prediction == 1 else "No Disease"
-
-        print("Prediction:", result)
-        print("Confidence:", confidence)
+        predicted_index = int(np.where(model.classes_ == prediction)[0][0])
+        confidence = round(float(probabilities[predicted_index]) * 100, 2)
 
         return jsonify({
-            "prediction": result,
+            "prediction": prediction,
             "confidence": confidence
         })
 
     except Exception as e:
-        print("ERROR:", str(e))
-
         return jsonify({
-            "prediction": "Server error: " + str(e)
+            "error": "Server error: " + str(e)
         }), 500
 
 
